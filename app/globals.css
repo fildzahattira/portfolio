@@ -1,8 +1,8 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fdf6f0;
+  --foreground: #3d2952;
 }
 
 @theme inline {
@@ -10,16 +10,17 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --color-cream: #F9F7F7;
-  --color-lightblue: #DBE2EF;
-  --color-blue: #3F72AF;
-  --color-navy: #112D4E;
+  --color-cream: #fdf6f0;
+  --color-lightpink: #f5eef8;
+  --color-pink: #c084b8;
+  --color-purple: #5c3d6e;
+  --color-darkpurple: #3d2952;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+    --background: #2a1a35;
+    --foreground: #f5eef8;
   }
 }
 
@@ -29,4 +30,22 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
+.bg-grid {
+  position: relative;
+}
 
+.bg-grid::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(var(--color-purple) 1px, transparent 1px),
+    linear-gradient(to right, var(--color-purple) 1px, transparent 1px);
+  background-size: 40px 40px;
+  opacity: 0.08;
+  z-index: 0;
+}
+
+.bg-grid > * {
+  position: relative;
+  z-index: 1;
+}
