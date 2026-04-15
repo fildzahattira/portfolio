@@ -1,8 +1,12 @@
+"use client";
 import { SiPhp, SiHtml5, SiTailwindcss, SiJavascript, SiMysql, SiNextdotjs, SiReact, SiPostman, SiK6, SiGit, SiJira, SiConfluence, SiFigma } from "react-icons/si";
 import { VscAzureDevops } from "react-icons/vsc";
 import { RiFileExcel2Fill } from "react-icons/ri";
+import useScrollAnimation from "@/hooks/useScrollAnimation";
 
 export default function Skills() {
+  const ref = useScrollAnimation();
+
   const row1 = [
     { icon: <SiPhp size={40} color="#777BB4" />, name: "PHP" },
     { icon: <SiHtml5 size={40} color="#E34C26" />, name: "HTML" },
@@ -28,7 +32,7 @@ export default function Skills() {
   const CardGrid = ({ items }) => (
     <div className="grid grid-cols-4 md:grid-cols-8 gap-4">
       {items.map((skill, index) => (
-        <div key={index} className="p-4 rounded-lg flex flex-col items-center gap-3" style={{ background: "linear-gradient(135deg, #f5eef8, #fdf6f0)", border: "1px solid rgba(192,132,184,0.6)" }}>
+        <div key={index} className="p-4 rounded-lg flex flex-col items-center gap-3 transition-transform hover:-translate-y-1" style={{ background: "linear-gradient(135deg, #f5eef8, #fdf6f0)", border: "1px solid rgba(192,132,184,0.6)" }}>
           {skill.icon}
           <p className="text-xs text-center" style={{ color: "#5c3d6e" }}>{skill.name}</p>
         </div>
@@ -37,12 +41,14 @@ export default function Skills() {
   );
 
   return (
-    <section className="px-10 py-20 flex flex-col gap-4" style={{ background: "linear-gradient(160deg, #fdf6f0, #f5eef8)" }}>
-      <h2 className="text-2xl mb-6" style={{ fontFamily: "Georgia, serif", color: "#5c3d6e", fontWeight: 400 }}>
-  <em style={{ color: "#c084b8" }}>Skills</em>
-      </h2>
-      <CardGrid items={row1} />
-      <CardGrid items={row2} />
+    <section ref={ref} className="fade-section" style={{ background: "linear-gradient(160deg, #fdf6f0, #f5eef8)" }}>
+      <div className="px-10 py-20 flex flex-col gap-4 max-w-screen-xl mx-auto">
+        <h2 className="text-2xl mb-6" style={{ fontFamily: "Georgia, serif", color: "#5c3d6e", fontWeight: 400 }}>
+          <em style={{ color: "#c084b8" }}>Skills</em>
+        </h2>
+        <CardGrid items={row1} />
+        <CardGrid items={row2} />
+      </div>
     </section>
   );
 }
